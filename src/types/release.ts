@@ -1,13 +1,13 @@
 export interface Release {
   id: string;
   platform: "Android" | "iOS";
-  status: "Planejada" | "Em alpha" | "Concluída" | "Cancelada" | "Em distribuição" | "Aguardando Aprovação na Loja";
+  status: string;
   rollout: string;
   version: string;
   observation: string;
   cutDate: string;
   cutTime: string;
-  type: "Normal";
+  type: "Normal" | "Hotfix";
   regressionStart: string;
   regressionEnd: string;
   gmudCentralizer: string;
