@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Admin from "./pages/Admin";
+import { ReleaseNotesGenerator } from "./pages/ReleaseNotesGenerator";
+import { Navbar } from "./components/navigation/Navbar";
 
 const queryClient = new QueryClient();
 
@@ -14,10 +16,14 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
+        <div className="min-h-screen bg-background">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/generator" element={<ReleaseNotesGenerator />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
