@@ -7,7 +7,7 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <span className="text-xl font-bold text-sidebar-foreground">Release Manager</span>
+              <span className="text-xl font-bold text-sidebar-foreground">Gerenciador de Releases</span>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
@@ -15,13 +15,19 @@ export const Navbar = () => {
                   to="/admin"
                   className="text-sidebar-foreground hover:bg-sidebar-accent px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Calendar
+                  Calendário
                 </Link>
                 <Link
                   to="/admin/generator"
                   className="text-sidebar-foreground hover:bg-sidebar-accent px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  Release Notes Generator
+                  Gerador de Release Notes
+                </Link>
+                <Link
+                  to="/admin/ongoing"
+                  className="text-sidebar-foreground hover:bg-sidebar-accent px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Releases em Andamento
                 </Link>
               </div>
             </div>

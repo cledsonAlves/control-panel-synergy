@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Admin from "./pages/Admin";
 import { ReleaseNotesGenerator } from "./pages/ReleaseNotesGenerator";
+import OngoingReleasesPage from "./pages/OngoingReleases";
 import { Navbar } from "./components/navigation/Navbar";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/generator" element={<ReleaseNotesGenerator />} />
+            <Route path="/admin/ongoing" element={<OngoingReleasesPage />} />
           </Routes>
         </div>
       </BrowserRouter>
