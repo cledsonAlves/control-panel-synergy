@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
+import { useEffect, useState } from "react";
+
+import { fetchReleasesFromGitHub } from "@/components/services/github"; // Assume que fetchReleasesFromGitHub é implementado
 
 type ReleaseStatus = {
   id: string;
@@ -13,39 +16,24 @@ type ReleaseStatus = {
   isActive: boolean;
 };
 
-const releases: ReleaseStatus[] = [
-  {
-    id: "R116",
-    platform: "iOS",
-    stage: "Testes Alpha",
-    status: "Em Progresso",
-    isActive: true,
-  },
-  {
-    id: "R116",
-    platform: "Android",
-    stage: "Preparando Alpha",
-    status: "Em Progresso",
-    isActive: true,
-  },
-  {
-    id: "R117",
-    platform: "iOS",
-    stage: "Testes Alpha",
-    status: "Em Progresso",
-    isActive: false,
-  },
-  {
-    id: "R117",
-    platform: "Android",
-    stage: "Preparando Alpha",
-    status: "Em Progresso",
-    isActive: false,
-  },
-];
-
 export const OngoingReleases = () => {
   const { toast } = useToast();
+  const [releases, setReleases] = useState<ReleaseStatus[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadReleases = async () => {
+      try {
+        const data = await fetchReleasesFromGitHub();
+        setReleases(data);
+      } catch (error) {
+        console.error("Erro ao carregar releases:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadReleases();
+  }, []);
 
   const handleStatusChange = (releaseId: string, platform: string, newStatus: boolean) => {
     // Aqui você implementaria a lógica para atualizar o status na API/GitHub
@@ -85,6 +73,10 @@ export const OngoingReleases = () => {
       </div>
     </div>
   );
+
+  if (loading) {
+    return <div className="p-6">Carregando releases...</div>;
+  }
 
   return (
     <div className="p-6">
